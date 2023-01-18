@@ -37,6 +37,9 @@ class Article
     #[ORM\ManyToMany(targetEntity: Media::class, inversedBy: 'articles')]
     private Collection $medias;
 
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->commentaries = new ArrayCollection();
@@ -171,6 +174,18 @@ class Article
     public function removeMedia(Media $media): self
     {
         $this->medias->removeElement($media);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

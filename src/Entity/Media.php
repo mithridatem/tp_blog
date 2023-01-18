@@ -24,9 +24,13 @@ class Media
     #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'medias')]
     private Collection $articles;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'medias')]
+    private Collection $users;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,6 +84,33 @@ class Media
     {
         if ($this->articles->removeElement($article)) {
             $article->removeMedia($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addMedia($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeMedia($this);
         }
 
         return $this;
