@@ -6,8 +6,6 @@
     <h3>formulaire d'inscription :</h3>
     {# création du formulaire #}
     {{ form_start(form) }}
-        {{form_label(form.email)}}
-        {{form_widget(form.email)}}
         {{ form_rest(form) }}
     {{ form_end(form) }}
 {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter catégorie{% endblock %}
+
+{% block body %}
+    {# insertion du formulaire #}
+    {{ form_start(form) }}
+        {{ form_rest(form) }}
+    {{ form_end(form)}}
+    {# Test des erreurs en utilisant les conditions #}
+    {% if resultat == '' %}
+    {% elseif resultat == 'erreur' %}
+        <p>La catégorie existe déja</p>
+    {% else %}
+        <p>La catégorie à été enregistré dans la BDD </p>
+    {% endif %}  
+{% endblock %}
