@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\CategoryType;
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
-
 use Doctrine\ORM\EntityManagerInterface;
 
 class CategoryController extends AbstractController
@@ -23,6 +22,7 @@ class CategoryController extends AbstractController
         $cat = new Category();
         //variable pour stocker une instance de mon formulaire
         $form = $this->createForm(CategoryType::class, $cat);
+        //récupération du formulaire
         $form->handleRequest($request);
         //tester si le formulaire à été submit
         if($form->isSubmitted()){
@@ -52,6 +52,17 @@ class CategoryController extends AbstractController
         return $this->render('category/index.html.twig', [
             'form' => $form->createView(),
             'resultat' => ''
+        ]);
+    }
+
+    //fonction pour afficher toutes les taches
+    #[Route('/category/all', name: 'app_category_all')]
+    public function getAllCategory(CategoryRepository $repo){
+        //récupération de la liste des tâches
+        $cats = $repo->findAll();
+        //rendu du template twig
+        return $this->render('category/allcategory.html.twig',[
+                'categories' => $cats, 
         ]);
     }
 }
