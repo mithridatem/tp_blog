@@ -31,18 +31,25 @@
                       <span class="visually-hidden">(current)</span>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Article</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Compte</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Connexion</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Deconnexion</a>
-                  </li>
+                  {# test si l'utilisateur est connecté affiche le bouton déconnexion #}
+                  {% if app.user != '' or app.user != null %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ path('app_category_all') }}">All Category</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ path('app_category_add') }}">Add Category</a>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ path('app_logout') }}">Deconnexion</a>
+                    </li>
+                    {# si l'utilisateur déconnecté affiche le bouton connexion  #}
+                    {% else %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Ajouter Compte</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                      </li>
+                  {% endif %}
                 </ul>
               </div>
             </div>

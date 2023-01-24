@@ -16,4 +16,5 @@
             <h4 class="valide"> {{ category.id }} : {{ category.name }} </h4>
         {% endfor %}
     {% endif %}
+    <a href="{{ path('app_category_export') }}" >Export du CSV</a>
 {% endblock %}

@@ -1,0 +1,36 @@
+{# templates/app/test-upload.html.twig #}
+{% extends 'base.html.twig' %}
+{% block title %}Upload test{% endblock %}
+
+{% block body %}
+  <div class="container container-fluid">
+    <br>
+    <h4>Importer les catégories depuis un fichier csv :</h4>
+    <br>
+    <div class="row">
+      <div class="col-lg-8">
+      {{ form_start(form, { attr: { 'accept-charset' : 'utf-8' }}) }}
+        <div class="form-group">
+          {{ form_label(form.upload_file) }}
+          {{ form_widget(form.upload_file) }}
+          {{ form_errors(form.upload_file) }}
+        </div>
+        <div class="form-group">
+          {{ form_widget(form.send, {'label': "Upload this file", 'attr' : { 'class': 'btn btn-primary' }}) }}
+        </div>
+        {{ form_rest(form) }}
+      {{ form_end(form) }}
+      </div>
+    </div>
+     <div class="error">
+      {% if error != "" %}
+        <h6>les catégories suivantes existent déja : </br>{{ error }}</h6>
+      {% else %}
+      {% endif %}
+      {% if add != "" %}
+        <h6>les catégories suivantes existent ont été ajouté en bdd : </br>{{ error }}</h6>
+      {% else %}
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
