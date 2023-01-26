@@ -87,7 +87,7 @@ class CategoryController extends AbstractController
         $response->headers->set('Content-Type', 'text/csv');
         return $response;
     }
-    //fonction pour ajouter importer des categories depuis un formulaire (fichier csv)
+    //fonction pour importer des categories depuis un formulaire (fichier csv)
     #[Route('/category/import', name: 'app_category_import')]
     public function importCategoryCsv(Request $request, FileUploader $file_uploader
     , EntityManagerInterface $manager, CategoryRepository $repo)
@@ -122,7 +122,7 @@ class CategoryController extends AbstractController
                         //on explode la ligne avec le séparateur ,
                         $ligne = explode(",", $fichier[$i]);
                         //test si la categorie existe déja
-                        if($repo->findOneBy(["name"=>$ligne[1]])){
+                        if($repo->findOneBy(["name"=>$ligne[1]])== $ligne[1]){
                             //incrémentation des erreurs
                             $error .= ' '.$ligne[1] .' ';
                         }

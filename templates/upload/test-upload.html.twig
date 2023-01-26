@@ -5,7 +5,19 @@
 {% block body %}
   <div class="container container-fluid">
     <br>
-    <h4>Importer les catégories depuis un fichier csv :</h4>
+    <h4>Importer les 
+    {% if app.request.attributes.get('_route') == 'app_category_import'%}
+      catégories
+    {% elseif app.request.attributes.get('_route') == 'app_article_import' %}
+      articles
+    {% elseif app.request.attributes.get('_route') == 'app_media_import' %}
+      medias
+    {% elseif app.request.attributes.get('_route') == 'app_commentary_import' %}
+      commentaires
+    {% elseif app.request.attributes.get('_route') == 'app_user_import' %}
+      utilisateurs
+    {% endif %}
+     depuis un fichier csv :</h4>
     <br>
     <div class="row">
       <div class="col-lg-8">

@@ -16,6 +16,7 @@
         {% endblock %}
     </head>
     <body>
+        <h2>{{ app.request.attributes.get('_route') }}</h2>
        {# <a href="{{ path('app_login')}}">Connexion</a>
         <a href="{{ path('app_logout')}}">Deconnexion</a> #}
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
