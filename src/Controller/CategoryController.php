@@ -100,17 +100,14 @@ class CategoryController extends AbstractController
         //récupération de la requête
         $form->handleRequest($request);
         //test si le formulaire est submit et validé
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
+        if($form->isSubmitted() && $form->isValid()){
             //récupération du fichier depuis le formulaire
             $file = $form['upload_file']->getData();
             //test si le fichier à été importé
-            if ($file) 
-            {
+            if($file){
                 $file_name = $file_uploader->upload($file);
                 //test si le nom du fichier existe (différent de null)
-                if (null !== $file_name) // for example
-                {
+                if(null !== $file_name){
                     //récupération du répertoire pour sauvegarder le fichier
                     $directory = $file_uploader->getTargetDirectory();
                     //récupération du chemin du fichier
@@ -141,16 +138,17 @@ class CategoryController extends AbstractController
                     //on insére les nouvelles catégories en BDD
                     $manager->flush();
                 }
-                else
-                {
-                // Oups, an error occured !!!
+                else{
+                    return dd("error le fichier n'a pas été importé"); 
                 }
             }
         }
-        return $this->render('upload/test-upload.html.twig', [
-        'form' => $form->createView(),
-        'error' => $error,
-        'add' => $add,
-        ]);
+        else{
+            return $this->render('upload/test-upload.html.twig', [
+                'form' => $form->createView(),
+                'error' => $error,
+                'add' => $add,
+            ]);
+        }
     }
 }

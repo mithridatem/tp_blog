@@ -9,9 +9,11 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\ArticleType;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Service\FileUploader;
 use App\Form\FileUploadType;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class ArticleController extends AbstractController
 {
@@ -27,8 +29,8 @@ class ArticleController extends AbstractController
         ]);
     }
     //fonction pour ajouter importer des categories depuis un formulaire (fichier csv)
-    #[Route('/articcle/import', name: 'app_article_import')]
-    public function importCategoryCsv(Request $request, FileUploader $file_uploader
+    #[Route('/article/import', name: 'app_article_import')]
+    public function importArticleCsv(Request $request, FileUploader $file_uploader
     , EntityManagerInterface $manager, ArticleRepository $repo)
     {
         //variables pour les messages en TWIG
@@ -94,6 +96,39 @@ class ArticleController extends AbstractController
         'form' => $form->createView(),
         'error' => $error,
         'add' => $add,
+        ]);
+    }
+    //fonction pour ajouter une catégorie depuis le formulaire
+    #[Route('/article/add', name: 'app_article_add')]
+    public function addArticle(Request $request, 
+    EntityManagerInterface $manager, UserInterface $user, UserRepository $repo): Response
+    {
+        //variable pour stocker mon objet Article
+        $art = new Article();
+        //variable pour stocker une instance de mon formulaire
+        $form = $this->createForm(ArticleType::class, $art);
+        //récupération du formulaire
+        $form->handleRequest($request);
+        //tester si le formulaire à été submit
+        if($form->isSubmitted()){
+            //set de l'auteur
+            $art->setUser($repo->findOneBy(["email"=>$user->getUserIdentifier()]));
+            //on sauvegarde
+            $manager->persist($art);
+            //ajouter en BDD
+            $manager->flush();
+            //redirection vers la page de création
+            return $this->render('article/index.html.twig', [
+                'form' => $form->createView(),
+                'resultat' => 'ok',
+                'user'=> $user->getUserIdentifier()
+            ]);
+        }
+        //au chargement de la page
+        return $this->render('article/index.html.twig', [
+            'form' => $form->createView(),
+            'resultat' => '',
+            'user'=> $user->getUserIdentifier()
         ]);
     }
 }
