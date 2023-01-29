@@ -4,3 +4,43 @@
 .valide{
     color:green;
 }
+form{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+    width: 30vw;
+    background-color:rgb(249, 249, 249);
+    border-radius: 2%;
+}
+label{
+    width: 30vw;
+}
+div>input[type="text"], div>textarea, div>select, div>button[type="submit"], div>input[type="date"]{
+    width: 25vw;
+    float: right;
+    background-color:rgb(230, 230, 230);
+    margin-right: 2.5vw;
+}
+div>input[type="checkbox"]{
+    float: left;
+    margin-left: 2.5vw;
+}
+div>label{
+    margin-top: 2.5vh;
+    margin-left: 2.5vw;
+    font-weight: bold;
+}
+div>select{
+    height: 5.6vh;
+    width: 50%;
+}
+div>button[type="submit"]{
+    margin-top: 3vh;
+}
+h1{
+    padding-top: 4vh;
+    margin-left: 5vw;
+}

@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ArticleType extends AbstractType
@@ -17,19 +18,25 @@ class ArticleType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('date')
+            ->add('date', DateType::class, [
+                'widget' => 'single_text',
+                // prevents rendering it as type="date", to avoid HTML5 date pickers
+                'html5' => true,
+                // adds a class that can be selected in JavaScript
+                'attr' => ['class' => 'date'],
+            ])
             ->add('validated')
             ->add('categories', EntityType::class, [
                 // looks for choices from this entity
                 'class' => Category::class,
-                'attr' => ['class' => 'formulaire action'],
-                'label'=> 'Choisir les catégories',
+                'attr' => ['class' => 'choice'],
+                'label'=> 'Choisir la catégorie :              ',
                 // uses the User.username property as the visible option string
                 'choice_label' => 'name',
             
                 // used to render a select box, check boxes or radios
                 'multiple' => true,
-                'expanded' => true,
+                'expanded' => false,
             ])
             ->add('Ajouter', SubmitType::class)
         ;

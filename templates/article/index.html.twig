@@ -3,7 +3,7 @@
 {% block title %}Ajouter article{% endblock %}
 
 {% block body %}
-    <h2>{{user}}</h2>
+   {#  <h2>{{user}}</h2> #}
     {# insertion du formulaire #}
     {{ form_start(form) }}
         {{ form_rest(form) }}
@@ -13,11 +13,4 @@
     {% else %}
         <p>L'article à été enregistré dans la BDD </p>
     {% endif %}
-    <select multiple="multiple">
-        <option value="1">option 1</option>
-        <option value="2">option 2</option>
-        <option value="3">option 3</option>
-        <option value="4">option 4</option>
-    </select>
-  
 {% endblock %}
