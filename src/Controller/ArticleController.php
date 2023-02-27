@@ -131,4 +131,24 @@ class ArticleController extends AbstractController
             'user'=> $user->getUserIdentifier()
         ]);
     }
+    #[Route('/article/export', name: 'app_article_export')]
+    public function exportCsv(ArticleRepository $repo):Response{
+        //récupération de la liste des tâches
+        $arts = $repo->findAll();
+        foreach ($arts as $art) {
+            //récupération des valeurs
+            $data = [$art->getId(), $art->getName()];
+            //ajout du séparateur ,
+            $rows[] = implode(',', $data);
+        }
+        //création de l'entête
+        $head = "ID,Name \n";
+        //création de la liste
+        $content = $head.implode("\n", $rows);
+        //instance de la Reponse
+        $response = new Response($content);
+        //ajout du header type text/csv
+        $response->headers->set('Content-Type', 'text/csv');
+        return $response;
+    }
 }

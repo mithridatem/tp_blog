@@ -25,7 +25,7 @@ class RegisterController extends AbstractController
         //stocker le résultat du formulaire
         $form->handleRequest($request);
         //condition validation du formulaire
-        if($form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
             //récupére le mot de passe en clair
             $pass = $_POST['user']['password'];
             //hasher le mot de passe
@@ -39,11 +39,17 @@ class RegisterController extends AbstractController
             //ajout en BDD
             $manager->flush();
             //rediriger vers la meme page
-            return $this->redirectToRoute('app_register');
+            //return $this->redirectToRoute('app_register');
+            //génération du formulaire redirection
+            return $this->render('register/index.html.twig', [
+            'form' => $form->createView(),
+            'add' => $user->getName(),
+            ]);
         }
         //génération du formulaire
         return $this->render('register/index.html.twig', [
             'form' => $form->createView(),
+            'add' => "",
         ]);
     }
 }

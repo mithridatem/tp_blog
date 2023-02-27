@@ -32,7 +32,12 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/category/add, roles: ROLE_USER }
+        - { path: ^/category/export, roles: ROLE_USER }
+        - { path: ^/category/import, roles: ROLE_USER }
+        - { path: ^/article/add, roles: ROLE_USER }
+        - { path: ^/article/import, roles: ROLE_USER }
+        - { path: ^/article/export, roles: ROLE_USER }
         # - { path: ^/home, roles: ROLE_USER }
 
 when@test:

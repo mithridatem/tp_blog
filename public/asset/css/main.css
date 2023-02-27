@@ -18,7 +18,8 @@ form{
 label{
     width: 30vw;
 }
-div>input[type="text"], div>textarea, div>select, div>button[type="submit"], div>input[type="date"]{
+div>input[type="text"], div>textarea, div>select, div>button[type="submit"], div>input[type="date"],
+div>input[type="email"], div>input[type="password"]{
     width: 25vw;
     float: right;
     background-color:rgb(230, 230, 230);
