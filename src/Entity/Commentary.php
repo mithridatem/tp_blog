@@ -33,7 +33,7 @@ class Commentary
 
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
+        $this->article = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,6 +99,10 @@ class Commentary
         $this->user = $user;
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this->content;
     }
 
 }

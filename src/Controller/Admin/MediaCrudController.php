@@ -18,7 +18,8 @@ class MediaCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name', 'Nom'),
-            ImageField::new('url', 'url')->setUploadDir('public/asset/img/')->setBasePath('asset/img/')
+            ImageField::new('url', 'Url')->setUploadDir('public/asset/img/')
+            ->setBasePath('asset/img/')
         ];
     }
 }
