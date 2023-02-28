@@ -27,20 +27,24 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="{{ path('app_home')}}">Home
-                      <span class="visually-hidden">(current)</span>
-                    </a>
-                  </li>
                   {# test si l'utilisateur est connecté affiche le bouton déconnexion #}
                   {% if app.user != '' or app.user != null %}
                     <li class="nav-item">
-                      <a class="nav-link" href="{{ path('app_category_all') }}">All Category</a>
+                      <a class="nav-link" href="{{ path('app_article_all') }}">All Article</a>
                     </li>
                     <li class="nav-item">
+                      <a class="nav-link" href="{{ path('app_category_all') }}">All Category</a>
+                    </li>
+                    
+                    <li class="nav-item">
                       <a class="nav-link" href="{{ path('app_article_add') }}">Add Article</a>
+                    </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{{ path('app_category_add') }}">Add Category</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ path('app_test_panel',{ '_locale': 'fr' }) }}">Panel Admin</a>
+                    </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{{ path('app_logout') }}">Deconnexion</a>
                     </li>

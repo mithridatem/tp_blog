@@ -137,6 +137,12 @@ class CategoryController extends AbstractController
                     }
                     //on insére les nouvelles catégories en BDD
                     $manager->flush();
+                    //return après import
+                    return $this->render('upload/test-upload.html.twig', [
+                        'form' => $form->createView(),
+                        'error' => $error,
+                        'add' => $add,
+                    ]);
                 }
                 else{
                     return dd("error le fichier n'a pas été importé"); 

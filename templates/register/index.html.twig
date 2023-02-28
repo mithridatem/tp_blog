@@ -3,9 +3,10 @@
 {% block title %}Création de compte{% endblock %}
 
 {% block body %}
-    <h3>formulaire d'inscription :</h3>
+    
     {# création du formulaire #}
     {{ form_start(form) }}
+        <h3>formulaire d'inscription :</h3>
         {{ form_rest(form) }}
     {{ form_end(form) }}
     {# test si le compte à été ajouté #}

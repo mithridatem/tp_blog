@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les articles{% endblock %}
+
+{% block body %}
+    <h3>Liste des articles : </h3>
+    {# condition test si le tableau est rempli #}
+    {# test tableau est vide #}
+    {% if articles == null %}
+        <h4 class="error">La liste des articles est vide </h4>
+    {# test non vide #}
+    {% else %}
+        {# Parcour du tableau avec une boucle #}
+        {% for article in articles %}
+            {# Affichage des attibuts #}
+            <div class="article">
+                <h5 class="valide">{{ article.id }} {{ article.title }}</h5>
+                <div>{{ article.content }}</div>
+                <p>{{ article.date | date('d/m/Y')}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

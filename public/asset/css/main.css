@@ -45,3 +45,7 @@ h1{
     padding-top: 4vh;
     margin-left: 5vw;
 }
+.article, h3, .export{
+    margin-top: 2vw;
+    margin-left: 2vw;
+}

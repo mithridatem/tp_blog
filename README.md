@@ -6,7 +6,8 @@
 
 ***Fonctionnalités principale du site :***
 
--Gestion des utilisatueurs (ajout, connexion, deconnexion, gestion des roles),
+-Gestion des utilisateurs (ajout, connexion, deconnexion, gestion des roles),
 
 -Gestions des articles (ajout, modification, suppression, affichage, import et export en .CSV)
 
+-Panel Admin Crud (traduit en français)

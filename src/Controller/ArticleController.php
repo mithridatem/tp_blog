@@ -20,12 +20,12 @@ class ArticleController extends AbstractController
 
     //fonction pour afficher toutes les taches
     #[Route('/article/all', name: 'app_article_all')]
-    public function getAllCategory(ArticleRepository $repo){
+    public function showAllArticle(ArticleRepository $repo){
         //récupération de la liste des tâches
-        $cats = $repo->findAll();
+        $articles = $repo->findAll();
         //rendu du template twig
-        return $this->render('category/allcategory.html.twig',[
-                'categories' => $cats, 
+        return $this->render('article/allArticle.html.twig',[
+                'articles' => $articles, 
         ]);
     }
     //fonction pour ajouter importer des categories depuis un formulaire (fichier csv)
@@ -137,7 +137,7 @@ class ArticleController extends AbstractController
         $arts = $repo->findAll();
         foreach ($arts as $art) {
             //récupération des valeurs
-            $data = [$art->getId(), $art->getName()];
+            $data = [$art->getId(), $art->getTitle()];
             //ajout du séparateur ,
             $rows[] = implode(',', $data);
         }
