@@ -15,7 +15,7 @@ use App\Entity\Commentary;
 use App\Entity\User;
 class DashboardController extends AbstractDashboardController
 {
-    #[Route('/admin', name: 'admin')]
+    #[Route('/test_panel', name: 'app_test_panel')]
     public function index(): Response
     {
         $url = $this->adminUrlGenerator
